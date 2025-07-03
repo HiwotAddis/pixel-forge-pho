@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Canvas as FabricCanvas } from 'fabric';
+import { Canvas as FabricCanvas, Image as FabricImage } from 'fabric';
 import { Upload, Image as ImageIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -28,9 +28,9 @@ export const Uploads = ({ canvas }: UploadsProps) => {
   const addImageToCanvas = (imageUrl: string) => {
     if (!canvas) return;
 
-    const img = new Image();
+    const img = new window.Image();
     img.onload = () => {
-      const fabricImg = new fabric.Image(img, {
+      const fabricImg = new FabricImage(img, {
         left: 100,
         top: 100,
         scaleX: 0.5,

@@ -1,8 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Canvas as FabricCanvas, Textbox } from 'fabric';
+import { Canvas as FabricCanvas, Textbox, Image as FabricImage } from 'fabric';
 import { Image, Lightbulb, Wand2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -28,9 +27,9 @@ export const AITools = ({ canvas }: AIToolsProps) => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       // For demo purposes, we'll use a placeholder image
-      const img = new Image();
+      const img = new window.Image();
       img.onload = () => {
-        const fabricImg = new fabric.Image(img, {
+        const fabricImg = new FabricImage(img, {
           left: 100,
           top: 100,
           scaleX: 0.5,

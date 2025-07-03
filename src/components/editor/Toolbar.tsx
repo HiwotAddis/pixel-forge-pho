@@ -1,10 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { useEditorStore } from "@/store/editorStore";
-import { Canvas as FabricCanvas, Textbox, Rect, Circle } from 'fabric';
+import { Canvas as FabricCanvas, Textbox, Rect, Circle, Image as FabricImage } from 'fabric';
 import { Square, Circle as CircleIcon, Image, Download, Upload } from "lucide-react";
-import { saveAs } from 'file-saver';
-import html2canvas from 'html2canvas';
 
 interface ToolbarProps {
   canvas: FabricCanvas | null;
@@ -71,9 +69,9 @@ export const Toolbar = ({ canvas }: ToolbarProps) => {
 
     const reader = new FileReader();
     reader.onload = (event) => {
-      const img = new Image();
+      const img = new window.Image();
       img.onload = () => {
-        const fabricImg = new fabric.Image(img, {
+        const fabricImg = new FabricImage(img, {
           left: 100,
           top: 100,
           scaleX: 0.5,
@@ -92,7 +90,8 @@ export const Toolbar = ({ canvas }: ToolbarProps) => {
     
     const dataURL = canvas.toDataURL({
       format: 'png',
-      quality: 1
+      quality: 1,
+      multiplier: 1
     });
     
     const link = document.createElement('a');

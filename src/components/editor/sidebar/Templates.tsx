@@ -39,7 +39,8 @@ export const Templates = ({ canvas }: TemplatesProps) => {
     if (!canvas) return;
     
     canvas.clear();
-    canvas.setBackgroundColor('#f0f0f0', canvas.renderAll.bind(canvas));
+    canvas.backgroundColor = '#f0f0f0';
+    canvas.renderAll();
     
     // Background
     const bg = new Rect({
@@ -80,7 +81,8 @@ export const Templates = ({ canvas }: TemplatesProps) => {
     if (!canvas) return;
     
     canvas.clear();
-    canvas.setBackgroundColor('#ffffff', canvas.renderAll.bind(canvas));
+    canvas.backgroundColor = '#ffffff';
+    canvas.renderAll();
     
     // Background
     const bg = new Rect({
