@@ -1,158 +1,149 @@
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Image, Layers, Camera, Circle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { PreEditorSidebar } from "@/components/editor/sidebar/PreEditorSidebar";
 import { useNavigate } from "react-router-dom";
+import { 
+  Plus, 
+  Sparkles, 
+  Users, 
+  Star,
+  ArrowRight,
+  Play
+} from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
 
-  const features = [
-    {
-      icon: <Image className="h-8 w-8" />,
-      title: "Design Templates",
-      description: "Choose from thousands of professional templates"
-    },
-    {
-      icon: <Layers className="h-8 w-8" />,
-      title: "Layer Management",
-      description: "Organize your design with advanced layer controls"
-    },
-    {
-      icon: <Camera className="h-8 w-8" />,
-      title: "AI Image Generation",
-      description: "Create stunning images with AI-powered tools"
-    },
-    {
-      icon: <Circle className="h-8 w-8" />,
-      title: "Export Options",
-      description: "Download in PNG, JPG, or PDF formats"
-    }
+  const templates = [
+    { name: "Instagram Post", size: "1080 × 1080 px", bg: "bg-gradient-to-br from-pink-500 to-purple-600" },
+    { name: "Presentation", size: "1920 × 1080 px", bg: "bg-gradient-to-br from-blue-500 to-cyan-500" },
+    { name: "Logo", size: "500 × 500 px", bg: "bg-gradient-to-br from-green-500 to-emerald-500" },
+    { name: "Poster", size: "2480 × 3508 px", bg: "bg-gradient-to-br from-orange-500 to-red-500" },
+    { name: "Business Card", size: "1050 × 600 px", bg: "bg-gradient-to-br from-indigo-500 to-purple-500" },
+    { name: "Resume", size: "2480 × 3508 px", bg: "bg-gradient-to-br from-gray-600 to-gray-800" }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900 text-white">
-      {/* Header */}
-      <header className="border-b border-white/10 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">P</span>
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900 flex">
+      {/* Pre-Editor Sidebar */}
+      <PreEditorSidebar />
+      
+      {/* Main Content */}
+      <div className="flex-1 p-8 overflow-y-auto">
+        {/* Header */}
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center space-x-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-800 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-xl">P</span>
+              </div>
+              <h1 className="text-5xl font-bold bg-gradient-to-r from-white via-red-200 to-red-400 bg-clip-text text-transparent">
+                Phoቶ
+              </h1>
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">
-              Phoቶ
-            </h1>
-          </div>
-          
-          <div className="flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              className="text-white hover:bg-white/10"
-              onClick={() => navigate('/editor')}
-            >
-              Login
-            </Button>
-            <Button 
-              className="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900"
-              onClick={() => navigate('/editor')}
-            >
-              Get Started
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center">
-          <Badge className="mb-6 bg-red-900/30 text-red-200 border-red-800">
-            AI-Powered Design Tool
-          </Badge>
-          
-          <h2 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-white via-red-100 to-red-200 bg-clip-text text-transparent">
-            Phoቶ
-          </h2>
-          
-          <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-            Create stunning designs with our powerful AI-enhanced canvas editor. 
-            Templates, layers, and intelligent tools at your fingertips.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-lg px-8 py-4"
-              onClick={() => navigate('/editor')}
-            >
-              Start Creating
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Design anything. Publish anywhere. Create stunning visuals with our powerful AI-powered design platform.
+            </p>
             
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white/20 text-white hover:bg-white/10 text-lg px-8 py-4"
+            {/* Action Buttons */}
+            <div className="flex items-center justify-center space-x-4 mb-12">
+              <Button
+                onClick={() => navigate('/editor')}
+                size="lg"
+                className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-4 text-lg rounded-xl"
+              >
+                <Plus className="h-5 w-5 mr-2" />
+                Create a design
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-white/20 text-white hover:bg-white/10 px-8 py-4 text-lg rounded-xl"
+              >
+                <Play className="h-5 w-5 mr-2" />
+                Watch tutorial
+              </Button>
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-purple-700 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Sparkles className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">AI-Powered</h3>
+                <p className="text-gray-300">Generate images, remove backgrounds, and enhance your designs with cutting-edge AI technology.</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Collaborative</h3>
+                <p className="text-gray-300">Work together in real-time with your team to create amazing designs that stand out.</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-green-700 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Star className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">Professional</h3>
+                <p className="text-gray-300">Access thousands of templates, fonts, and design elements to create professional-quality designs.</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Templates Section */}
+          <div className="mb-12">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold text-white">Start designing</h2>
+              <Button 
+                variant="ghost" 
+                className="text-white hover:bg-white/10"
+              >
+                See all templates
+                <ArrowRight className="h-4 w-4 ml-2" />
+              </Button>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {templates.map((template, index) => (
+                <Card 
+                  key={index}
+                  className="bg-white/5 border-white/10 backdrop-blur-sm cursor-pointer hover:bg-white/10 transition-all duration-300 group"
+                  onClick={() => navigate('/editor')}
+                >
+                  <CardContent className="p-4">
+                    <div className={`w-full h-32 rounded-lg ${template.bg} mb-3 group-hover:scale-105 transition-transform duration-300`} />
+                    <h3 className="font-medium text-white text-sm mb-1">{template.name}</h3>
+                    <p className="text-gray-400 text-xs">{template.size}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center py-16">
+            <h2 className="text-4xl font-bold text-white mb-4">Ready to create?</h2>
+            <p className="text-xl text-gray-300 mb-8">Join millions of users creating stunning designs with Phoቶ</p>
+            <Button
+              onClick={() => navigate('/editor')}
+              size="lg"
+              className="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-12 py-4 text-lg rounded-xl"
             >
-              Watch Demo
+              Get started for free
             </Button>
           </div>
         </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <h3 className="text-4xl font-bold text-center mb-12">
-            Everything You Need to Create
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <Card key={index} className="bg-white/5 border-white/10 backdrop-blur-sm">
-                <CardHeader>
-                  <div className="text-red-400 mb-2">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="text-white">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-300">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-red-900/20 to-black/20">
-        <div className="container mx-auto text-center">
-          <h3 className="text-4xl font-bold mb-6">
-            Ready to Create Something Amazing?
-          </h3>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join thousands of creators who trust Phoቶ for their design needs.
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-lg px-8 py-4"
-            onClick={() => navigate('/editor')}
-          >
-            Start Your Free Trial
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-8 px-4">
-        <div className="container mx-auto text-center text-gray-400">
-          <p>&copy; 2024 Phoቶ. All rights reserved.</p>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 };

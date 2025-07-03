@@ -6,7 +6,7 @@ interface EditorState {
   canvas: FabricCanvas | null;
   activeObject: FabricObject | null;
   activeTool: 'select' | 'text' | 'rectangle' | 'circle' | 'image' | 'ai-image';
-  sidebarTab: 'templates' | 'elements' | 'uploads' | 'ai-tools';
+  sidebarTab: 'templates' | 'elements' | 'text' | 'brand' | 'uploads' | 'ai-tools';
   setCanvas: (canvas: FabricCanvas) => void;
   setActiveObject: (object: FabricObject | null) => void;
   setActiveTool: (tool: EditorState['activeTool']) => void;

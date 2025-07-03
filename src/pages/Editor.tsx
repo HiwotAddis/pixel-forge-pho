@@ -1,8 +1,8 @@
 
 import { useState, useEffect, useRef } from "react";
-import { Canvas as FabricCanvas, Circle, Rect, Textbox } from "fabric";
+import { Canvas as FabricCanvas } from "fabric";
 import { Toolbar } from "@/components/editor/Toolbar";
-import { Sidebar } from "@/components/editor/Sidebar";
+import { EnhancedSidebar } from "@/components/editor/sidebar/EnhancedSidebar";
 import { PropertiesPanel } from "@/components/editor/PropertiesPanel";
 import { useEditorStore } from "@/store/editorStore";
 import { Button } from "@/components/ui/button";
@@ -61,7 +61,7 @@ const Editor = () => {
             </Button>
             
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-gradient-to-r from-red-600 to-red-800 rounded flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-red-600 to-red-800 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">P</span>
               </div>
               <h1 className="text-xl font-bold bg-gradient-to-r from-white to-red-200 bg-clip-text text-transparent">
@@ -76,21 +76,19 @@ const Editor = () => {
 
       {/* Main Editor */}
       <div className="flex-1 flex">
-        {/* Left Sidebar */}
-        <div className="w-64 border-r border-white/10 bg-black/20 backdrop-blur-sm">
-          <Sidebar canvas={fabricCanvas} />
-        </div>
+        {/* Enhanced Sidebar */}
+        <EnhancedSidebar canvas={fabricCanvas} />
 
         {/* Canvas Area */}
-        <div className="flex-1 flex items-center justify-center p-8">
-          <div className="bg-white rounded-lg shadow-2xl overflow-hidden">
+        <div className="flex-1 flex items-center justify-center p-8 bg-gray-100">
+          <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
             <canvas ref={canvasRef} className="block" />
           </div>
         </div>
 
         {/* Right Properties Panel */}
         {activeObject && (
-          <div className="w-64 border-l border-white/10 bg-black/20 backdrop-blur-sm">
+          <div className="w-80 border-l border-gray-200 bg-white">
             <PropertiesPanel canvas={fabricCanvas} object={activeObject} />
           </div>
         )}
