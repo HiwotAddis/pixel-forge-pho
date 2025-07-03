@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Canvas as FabricCanvas, Textbox, Image as FabricImage } from 'fabric';
@@ -9,8 +8,7 @@ import {
   Scissors, 
   Palette, 
   Expand,
-  Sparkles,
-  Magic
+  Sparkles
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -166,7 +164,7 @@ export const EnhancedAITools = ({ canvas }: EnhancedAIToolsProps) => {
     {
       title: "Magic Eraser",
       description: "Remove unwanted objects from photos",
-      icon: Magic,
+      icon: Wand2,
       action: () => toast.info("Select an area to erase"),
       hasInput: false
     },
