@@ -23,12 +23,12 @@ export const PreEditorSidebar = () => {
       isPrimary: true 
     },
     { icon: Home, label: "Home", action: () => navigate('/') },
-    { icon: FolderOpen, label: "Projects", action: () => {} },
-    { icon: FileImage, label: "Templates", action: () => {} },
+    { icon: FolderOpen, label: "Projects", action: () => navigate('/projects') },
+    { icon: FileImage, label: "Templates", action: () => navigate('/templates') },
     { 
       icon: Crown, 
       label: "Brand", 
-      action: () => {},
+      action: () => navigate('/brand'),
       hasBadge: true 
     },
     { 
@@ -36,7 +36,7 @@ export const PreEditorSidebar = () => {
       label: "Canva AI", 
       action: () => navigate('/editor?tab=ai-tools') 
     },
-    { icon: Grid2X2, label: "Apps", action: () => {} },
+    { icon: Grid2X2, label: "Apps", action: () => navigate('/apps') },
   ];
 
   return (
