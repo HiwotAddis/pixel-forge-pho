@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { useEditorStore } from "@/store/editorStore";
 import { Canvas as FabricCanvas } from 'fabric';
@@ -25,12 +24,12 @@ export const EnhancedSidebar = ({ canvas }: EnhancedSidebarProps) => {
   const { sidebarTab, setSidebarTab } = useEditorStore();
 
   const tabs = [
-    { id: 'templates', label: 'Design', icon: FileImage },
-    { id: 'elements', label: 'Elements', icon: Shapes },
-    { id: 'text', label: 'Text', icon: Type },
+    { id: 'templates', label: 'Design', icon: FileImage, hasBadge: false },
+    { id: 'elements', label: 'Elements', icon: Shapes, hasBadge: false },
+    { id: 'text', label: 'Text', icon: Type, hasBadge: false },
     { id: 'brand', label: 'Brand', icon: Crown, hasBadge: true },
-    { id: 'uploads', label: 'Uploads', icon: Upload },
-    { id: 'ai-tools', label: 'Magic Studio', icon: Sparkles }
+    { id: 'uploads', label: 'Uploads', icon: Upload, hasBadge: false },
+    { id: 'ai-tools', label: 'Magic Studio', icon: Sparkles, hasBadge: false }
   ] as const;
 
   const renderTabContent = () => {
