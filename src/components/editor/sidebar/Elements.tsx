@@ -70,13 +70,13 @@ export const Elements = ({ canvas }: ElementsProps) => {
   return (
     <div className="p-4 space-y-6">
       <div>
-        <h3 className="text-lg font-semibold text-white mb-4">Shapes</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Shapes</h3>
         <div className="grid grid-cols-2 gap-2">
           {shapes.map((shape) => (
             <Button
               key={shape.type}
               variant="ghost"
-              className="h-16 flex flex-col items-center justify-center text-white hover:bg-white/10"
+              className="h-16 flex flex-col items-center justify-center text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               onClick={() => addShape(shape.type)}
             >
               {shape.icon}
@@ -87,12 +87,12 @@ export const Elements = ({ canvas }: ElementsProps) => {
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-white mb-4">Colors</h3>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Colors</h3>
         <div className="grid grid-cols-6 gap-2">
           {colors.map((color) => (
             <div
               key={color}
-              className="w-8 h-8 rounded-full cursor-pointer border-2 border-white/20 hover:border-white/40"
+              className="w-8 h-8 rounded-full cursor-pointer border-2 border-gray-200 hover:border-gray-400"
               style={{ backgroundColor: color }}
               onClick={() => {
                 const activeObject = canvas?.getActiveObject();

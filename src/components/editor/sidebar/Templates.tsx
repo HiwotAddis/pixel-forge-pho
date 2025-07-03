@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Canvas as FabricCanvas, Rect, Textbox, Circle } from 'fabric';
@@ -197,18 +196,18 @@ export const Templates = ({ canvas }: TemplatesProps) => {
 
   return (
     <div className="p-4 space-y-4">
-      <h3 className="text-lg font-semibold text-white">Templates</h3>
+      <h3 className="text-lg font-semibold text-gray-900">Templates</h3>
       
       <div className="grid grid-cols-2 gap-3">
         {templates.map((template) => (
           <Card 
             key={template.id} 
-            className="bg-white/5 border-white/10 cursor-pointer hover:bg-white/10 transition-colors"
+            className="bg-white border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors"
             onClick={template.create}
           >
             <CardContent className="p-3">
               <div className={`w-full h-16 rounded ${template.preview} mb-2`} />
-              <p className="text-sm text-white text-center">{template.name}</p>
+              <p className="text-sm text-gray-700 text-center">{template.name}</p>
             </CardContent>
           </Card>
         ))}

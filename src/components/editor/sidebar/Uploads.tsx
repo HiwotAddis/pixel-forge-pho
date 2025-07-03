@@ -1,89 +1,83 @@
 
 import { Button } from "@/components/ui/button";
-import { Canvas as FabricCanvas, Image as FabricImage } from 'fabric';
-import { Upload, Image as ImageIcon } from "lucide-react";
-import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Canvas as FabricCanvas, FabricImage } from 'fabric';
+import { Upload, Image, Camera } from "lucide-react";
+import { useRef } from "react";
 
 interface UploadsProps {
   canvas: FabricCanvas | null;
 }
 
 export const Uploads = ({ canvas }: UploadsProps) => {
-  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files) return;
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !canvas) return;
 
-    Array.from(files).forEach(file => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const imageUrl = event.target?.result as string;
-        setUploadedImages(prev => [...prev, imageUrl]);
-      };
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const addImageToCanvas = (imageUrl: string) => {
-    if (!canvas) return;
-
-    const img = new window.Image();
-    img.onload = () => {
-      const fabricImg = new FabricImage(img, {
-        left: 100,
-        top: 100,
-        scaleX: 0.5,
-        scaleY: 0.5
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      FabricImage.fromURL(result).then((img) => {
+        img.set({
+          left: 100,
+          top: 100,
+          scaleX: 0.5,
+          scaleY: 0.5,
+        });
+        canvas.add(img);
+        canvas.setActiveObject(img);
       });
-      canvas.add(fabricImg);
-      canvas.setActiveObject(fabricImg);
     };
-    img.src = imageUrl;
+    reader.readAsDataURL(file);
   };
 
   return (
-    <div className="p-4 space-y-4">
-      <h3 className="text-lg font-semibold text-white">Uploads</h3>
-      
-      <div className="relative">
-        <input
+    <div className="h-full bg-white">
+      {/* Header */}
+      <div className="p-4 border-b border-gray-200">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Uploads</h2>
+        
+        {/* Upload Button */}
+        <Button
+          onClick={() => fileInputRef.current?.click()}
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-3"
+        >
+          <Upload className="h-4 w-4 mr-2" />
+          Upload an image
+        </Button>
+        
+        <Input
+          ref={fileInputRef}
           type="file"
           accept="image/*"
-          multiple
-          onChange={handleImageUpload}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          onChange={handleFileUpload}
+          className="hidden"
         />
-        <Button 
-          variant="outline" 
-          className="w-full h-32 border-dashed border-white/20 text-white hover:bg-white/10 flex flex-col items-center justify-center"
-        >
-          <Upload className="h-8 w-8 mb-2" />
-          <span>Click to upload images</span>
-          <span className="text-xs text-gray-400">PNG, JPG, GIF up to 10MB</span>
-        </Button>
       </div>
 
-      {uploadedImages.length > 0 && (
-        <div className="space-y-2">
-          <h4 className="text-sm font-medium text-white">Your Images</h4>
-          <div className="grid grid-cols-2 gap-2">
-            {uploadedImages.map((imageUrl, index) => (
-              <div
-                key={index}
-                className="relative aspect-square bg-white/5 rounded-lg overflow-hidden cursor-pointer hover:bg-white/10"
-                onClick={() => addImageToCanvas(imageUrl)}
-              >
-                <img
-                  src={imageUrl}
-                  alt={`Upload ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
+      {/* Content */}
+      <div className="p-4 space-y-6">
+        {/* Recent uploads placeholder */}
+        <div className="text-center py-8">
+          <Image className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-600 text-sm mb-2">No uploads yet</p>
+          <p className="text-gray-500 text-xs">Upload images to use in your design</p>
         </div>
-      )}
+
+        {/* Stock photos section */}
+        <div>
+          <h3 className="font-medium text-gray-900 mb-4">Stock photos</h3>
+          <Button
+            variant="outline"
+            className="w-full border-gray-200 text-gray-700 hover:bg-gray-50 py-3"
+          >
+            <Camera className="h-4 w-4 mr-2" />
+            Browse stock photos
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
